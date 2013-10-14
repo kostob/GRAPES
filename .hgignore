@@ -1,0 +1,10 @@
+\.orig$
+\.orig\..*$
+\.chg\..*$
+\.rej$
+\.conflict\~$
+^nbproject$
+\.o$
+\.a$
+\.dll$
+\.lib$
