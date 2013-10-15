@@ -6,6 +6,7 @@
  */
 #include <stdlib.h>
 #include <stdint.h>
+#include <sys/time.h>
 
 #include "chunk.h"
 #include "net_helper.h"

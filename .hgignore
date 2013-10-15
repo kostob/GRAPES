@@ -3,8 +3,11 @@
 \.chg\..*$
 \.rej$
 \.conflict\~$
-^nbproject$
 \.o$
 \.a$
+\.so$
 \.dll$
 \.lib$
+^build$
+^dist$
+^nbproject/private$

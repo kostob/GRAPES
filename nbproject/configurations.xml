@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="89">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="include" displayName="include" projectFiles="true">
+      <itemPath>include/chunk.h</itemPath>
+      <itemPath>include/chunkbuffer.h</itemPath>
+      <itemPath>include/chunkidset.h</itemPath>
+      <itemPath>include/grapes_msg_types.h</itemPath>
+      <itemPath>include/net_helper.h</itemPath>
+      <itemPath>include/peer.h</itemPath>
+      <itemPath>include/peerset.h</itemPath>
+      <itemPath>include/scheduler_common.h</itemPath>
+      <itemPath>include/scheduler_ha.h</itemPath>
+      <itemPath>include/scheduler_la.h</itemPath>
+      <itemPath>include/tman.h</itemPath>
+      <itemPath>include/topmanager.h</itemPath>
+      <itemPath>include/trade_msg_ha.h</itemPath>
+      <itemPath>include/trade_msg_la.h</itemPath>
+      <itemPath>include/trade_sig_ha.h</itemPath>
+      <itemPath>include/trade_sig_la.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="src" displayName="src" projectFiles="true">
+      <logicalFolder name="ChunkBuffer" displayName="ChunkBuffer" projectFiles="true">
+        <itemPath>src/ChunkBuffer/buffer-ha.c</itemPath>
+        <itemPath>src/ChunkBuffer/buffer.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="ChunkIDSet" displayName="ChunkIDSet" projectFiles="true">
+        <itemPath>src/ChunkIDSet/chunkids_encoding.c</itemPath>
+        <itemPath>src/ChunkIDSet/chunkids_ha.c</itemPath>
+        <itemPath>src/ChunkIDSet/chunkids_ops.c</itemPath>
+        <itemPath>src/ChunkIDSet/chunkids_private.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="ChunkTrading"
+                     displayName="ChunkTrading"
+                     projectFiles="true">
+        <itemPath>src/ChunkTrading/chunk_delivery.c</itemPath>
+        <itemPath>src/ChunkTrading/chunk_encoding.c</itemPath>
+        <itemPath>src/ChunkTrading/chunk_signaling.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="PeerSet" displayName="PeerSet" projectFiles="true">
+        <itemPath>src/PeerSet/peerset_ops.c</itemPath>
+        <itemPath>src/PeerSet/peerset_private.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Scheduler" displayName="Scheduler" projectFiles="true">
+        <itemPath>src/Scheduler/sched.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Tests" displayName="Tests" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="TopologyManager"
+                     displayName="TopologyManager"
+                     projectFiles="true">
+        <itemPath>src/TopologyManager/blist_cache.c</itemPath>
+        <itemPath>src/TopologyManager/blist_cache.h</itemPath>
+        <itemPath>src/TopologyManager/blist_proto.c</itemPath>
+        <itemPath>src/TopologyManager/blist_proto.h</itemPath>
+        <itemPath>src/TopologyManager/cyclon.c</itemPath>
+        <itemPath>src/TopologyManager/cyclon_proto.c</itemPath>
+        <itemPath>src/TopologyManager/cyclon_proto.h</itemPath>
+        <itemPath>src/TopologyManager/dummy.c</itemPath>
+        <itemPath>src/TopologyManager/ncast.c</itemPath>
+        <itemPath>src/TopologyManager/ncast_proto.c</itemPath>
+        <itemPath>src/TopologyManager/ncast_proto.h</itemPath>
+        <itemPath>src/TopologyManager/peersampler.c</itemPath>
+        <itemPath>src/TopologyManager/peersampler_iface.h</itemPath>
+        <itemPath>src/TopologyManager/proto.h</itemPath>
+        <itemPath>src/TopologyManager/tman.c</itemPath>
+        <itemPath>src/TopologyManager/topo_proto.c</itemPath>
+        <itemPath>src/TopologyManager/topo_proto.h</itemPath>
+        <itemPath>src/TopologyManager/topocache.c</itemPath>
+        <itemPath>src/TopologyManager/topocache.h</itemPath>
+      </logicalFolder>
+      <itemPath>src/config.c</itemPath>
+      <itemPath>src/config.h</itemPath>
+      <itemPath>src/int_coding.h</itemPath>
+      <itemPath>src/net_helper.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>src</Elem>
+    <Elem>include</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="2">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>src</pElem>
+          </incDir>
+          <warningLevel>2</warningLevel>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>src</pElem>
+          </incDir>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+      </compileType>
+      <item path="include/chunk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/chunkbuffer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/chunkidset.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/grapes_msg_types.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/net_helper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/peer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/peerset.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/scheduler_common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/scheduler_ha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/scheduler_la.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/tman.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/topmanager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/trade_msg_ha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/trade_msg_la.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/trade_sig_ha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/trade_sig_la.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/ChunkBuffer/buffer-ha.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkBuffer/buffer.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_encoding.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_ha.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_ops.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_private.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/ChunkTrading/chunk_delivery.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkTrading/chunk_encoding.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkTrading/chunk_signaling.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSet/peerset_ops.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSet/peerset_private.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Scheduler/sched.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/blist_cache.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/blist_cache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/blist_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/blist_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/cyclon.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/cyclon_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/cyclon_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/dummy.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/ncast.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/ncast_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/ncast_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/peersampler.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/peersampler_iface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/TopologyManager/proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/tman.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/topo_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/topo_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/topocache.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/topocache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/config.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/config.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/int_coding.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/net_helper.c" ex="false" tool="0" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="2">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>src</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>src</pElem>
+          </incDir>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="include/chunk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/chunkbuffer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/chunkidset.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/grapes_msg_types.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/net_helper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/peer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/peerset.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/scheduler_common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/scheduler_ha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/scheduler_la.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/tman.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/topmanager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/trade_msg_ha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/trade_msg_la.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/trade_sig_ha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/trade_sig_la.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/ChunkBuffer/buffer-ha.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkBuffer/buffer.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_encoding.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_ha.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_ops.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_private.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/ChunkTrading/chunk_delivery.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkTrading/chunk_encoding.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkTrading/chunk_signaling.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSet/peerset_ops.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSet/peerset_private.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Scheduler/sched.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/blist_cache.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/blist_cache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/blist_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/blist_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/cyclon.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/cyclon_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/cyclon_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/dummy.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/ncast.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/ncast_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/ncast_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/peersampler.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/peersampler_iface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/TopologyManager/proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/tman.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/topo_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/topo_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/topocache.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/TopologyManager/topocache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/config.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/config.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/int_coding.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/net_helper.c" ex="false" tool="0" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

@@ -16,6 +16,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <arpa/inet.h>
+#include <sys/time.h>
 
 #include "chunk.h"
 #include "grapes_msg_types.h"
