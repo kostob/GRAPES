@@ -8,7 +8,9 @@ struct chunkID_set {
   uint32_t type;
   uint32_t size;
   uint32_t n_elements;
-  uint32_t *elements;
+  int *elements;
+  struct cids_ops_iface *ops;
+  struct cids_encoding_iface *enc;
 };
 
 #endif /* CHUNKID_SET_PRIVATE */

@@ -1,34 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="89">
+<configurationDescriptor version="90">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
-    <logicalFolder name="include" displayName="include" projectFiles="true">
-      <itemPath>include/chunk.h</itemPath>
-      <itemPath>include/chunkbuffer.h</itemPath>
-      <itemPath>include/chunkidset.h</itemPath>
-      <itemPath>include/grapes_msg_types.h</itemPath>
-      <itemPath>include/net_helper.h</itemPath>
-      <itemPath>include/peer.h</itemPath>
-      <itemPath>include/peerset.h</itemPath>
-      <itemPath>include/scheduler_common.h</itemPath>
-      <itemPath>include/scheduler_ha.h</itemPath>
-      <itemPath>include/scheduler_la.h</itemPath>
-      <itemPath>include/tman.h</itemPath>
-      <itemPath>include/topmanager.h</itemPath>
-      <itemPath>include/trade_msg_ha.h</itemPath>
-      <itemPath>include/trade_msg_la.h</itemPath>
-      <itemPath>include/trade_sig_ha.h</itemPath>
-      <itemPath>include/trade_sig_la.h</itemPath>
+    <logicalFolder name="f1" displayName="include" projectFiles="true">
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/chunk.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/chunkbuffer.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/chunkidset.h</itemPath>
+      <itemPath>include/chunkiser.h</itemPath>
+      <itemPath>include/cloud_helper.h</itemPath>
+      <itemPath>include/cloud_helper_utils.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/grapes_msg_types.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/net_helper.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/peer.h</itemPath>
+      <itemPath>include/peersampler.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/peerset.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/scheduler_common.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/scheduler_ha.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/scheduler_la.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/tman.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/trade_msg_ha.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/trade_msg_la.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/trade_sig_ha.h</itemPath>
+      <itemPath>/usr/home/tobias/dev/GRAPES/include/trade_sig_la.h</itemPath>
     </logicalFolder>
-    <logicalFolder name="src" displayName="src" projectFiles="true">
+    <logicalFolder name="f2" displayName="src" projectFiles="true">
+      <logicalFolder name="Cache" displayName="Cache" projectFiles="true">
+        <itemPath>src/Cache/Makefile</itemPath>
+        <itemPath>src/Cache/blist_cache.c</itemPath>
+        <itemPath>src/Cache/blist_cache.h</itemPath>
+        <itemPath>src/Cache/blist_proto.c</itemPath>
+        <itemPath>src/Cache/blist_proto.h</itemPath>
+        <itemPath>src/Cache/cloudcast_proto.c</itemPath>
+        <itemPath>src/Cache/cloudcast_proto.h</itemPath>
+        <itemPath>src/Cache/cyclon_proto.c</itemPath>
+        <itemPath>src/Cache/cyclon_proto.h</itemPath>
+        <itemPath>src/Cache/ncast_proto.c</itemPath>
+        <itemPath>src/Cache/ncast_proto.h</itemPath>
+        <itemPath>src/Cache/proto.h</itemPath>
+        <itemPath>src/Cache/topo_proto.c</itemPath>
+        <itemPath>src/Cache/topo_proto.h</itemPath>
+        <itemPath>src/Cache/topocache.c</itemPath>
+        <itemPath>src/Cache/topocache.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="ChunkBuffer" displayName="ChunkBuffer" projectFiles="true">
         <itemPath>src/ChunkBuffer/buffer-ha.c</itemPath>
         <itemPath>src/ChunkBuffer/buffer.c</itemPath>
       </logicalFolder>
       <logicalFolder name="ChunkIDSet" displayName="ChunkIDSet" projectFiles="true">
         <itemPath>src/ChunkIDSet/chunkids_encoding.c</itemPath>
+        <itemPath>src/ChunkIDSet/chunkids_encoding_list.c</itemPath>
+        <itemPath>src/ChunkIDSet/chunkids_encoding_set.c</itemPath>
         <itemPath>src/ChunkIDSet/chunkids_ha.c</itemPath>
+        <itemPath>src/ChunkIDSet/chunkids_iface.h</itemPath>
         <itemPath>src/ChunkIDSet/chunkids_ops.c</itemPath>
+        <itemPath>src/ChunkIDSet/chunkids_ops_list.c</itemPath>
+        <itemPath>src/ChunkIDSet/chunkids_ops_set.c</itemPath>
         <itemPath>src/ChunkIDSet/chunkids_private.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Chunkiser" displayName="Chunkiser" projectFiles="true">
+        <itemPath>src/Chunkiser/Makefile</itemPath>
+        <itemPath>src/Chunkiser/chunkiser_iface.h</itemPath>
+        <itemPath>src/Chunkiser/dechunkiser_iface.h</itemPath>
+        <itemPath>src/Chunkiser/ffmpeg_compat.h</itemPath>
+        <itemPath>src/Chunkiser/input-stream-avf.c</itemPath>
+        <itemPath>src/Chunkiser/input-stream-dumb.c</itemPath>
+        <itemPath>src/Chunkiser/input-stream-dummy.c</itemPath>
+        <itemPath>src/Chunkiser/input-stream-udp.c</itemPath>
+        <itemPath>src/Chunkiser/input-stream.c</itemPath>
+        <itemPath>src/Chunkiser/libav-compat.h</itemPath>
+        <itemPath>src/Chunkiser/output-stream-avf.c</itemPath>
+        <itemPath>src/Chunkiser/output-stream-dummy.c</itemPath>
+        <itemPath>src/Chunkiser/output-stream-play.c</itemPath>
+        <itemPath>src/Chunkiser/output-stream-raw.c</itemPath>
+        <itemPath>src/Chunkiser/output-stream-udp.c</itemPath>
+        <itemPath>src/Chunkiser/output-stream.c</itemPath>
+        <itemPath>src/Chunkiser/payload.h</itemPath>
       </logicalFolder>
       <logicalFolder name="ChunkTrading"
                      displayName="ChunkTrading"
@@ -36,6 +81,19 @@
         <itemPath>src/ChunkTrading/chunk_delivery.c</itemPath>
         <itemPath>src/ChunkTrading/chunk_encoding.c</itemPath>
         <itemPath>src/ChunkTrading/chunk_signaling.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="CloudSupport"
+                     displayName="CloudSupport"
+                     projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="PeerSampler" displayName="PeerSampler" projectFiles="true">
+        <itemPath>src/PeerSampler/Makefile</itemPath>
+        <itemPath>src/PeerSampler/cloudcast.c</itemPath>
+        <itemPath>src/PeerSampler/cyclon.c</itemPath>
+        <itemPath>src/PeerSampler/dummy.c</itemPath>
+        <itemPath>src/PeerSampler/ncast.c</itemPath>
+        <itemPath>src/PeerSampler/peersampler.c</itemPath>
+        <itemPath>src/PeerSampler/peersampler_iface.h</itemPath>
       </logicalFolder>
       <logicalFolder name="PeerSet" displayName="PeerSet" projectFiles="true">
         <itemPath>src/PeerSet/peerset_ops.c</itemPath>
@@ -49,30 +107,24 @@
       <logicalFolder name="TopologyManager"
                      displayName="TopologyManager"
                      projectFiles="true">
-        <itemPath>src/TopologyManager/blist_cache.c</itemPath>
-        <itemPath>src/TopologyManager/blist_cache.h</itemPath>
-        <itemPath>src/TopologyManager/blist_proto.c</itemPath>
-        <itemPath>src/TopologyManager/blist_proto.h</itemPath>
-        <itemPath>src/TopologyManager/cyclon.c</itemPath>
-        <itemPath>src/TopologyManager/cyclon_proto.c</itemPath>
-        <itemPath>src/TopologyManager/cyclon_proto.h</itemPath>
-        <itemPath>src/TopologyManager/dummy.c</itemPath>
-        <itemPath>src/TopologyManager/ncast.c</itemPath>
-        <itemPath>src/TopologyManager/ncast_proto.c</itemPath>
-        <itemPath>src/TopologyManager/ncast_proto.h</itemPath>
-        <itemPath>src/TopologyManager/peersampler.c</itemPath>
-        <itemPath>src/TopologyManager/peersampler_iface.h</itemPath>
-        <itemPath>src/TopologyManager/proto.h</itemPath>
+        <itemPath>src/TopologyManager/dumbTopman.c</itemPath>
         <itemPath>src/TopologyManager/tman.c</itemPath>
-        <itemPath>src/TopologyManager/topo_proto.c</itemPath>
-        <itemPath>src/TopologyManager/topo_proto.h</itemPath>
-        <itemPath>src/TopologyManager/topocache.c</itemPath>
-        <itemPath>src/TopologyManager/topocache.h</itemPath>
+        <itemPath>src/TopologyManager/topman.c</itemPath>
+        <itemPath>src/TopologyManager/topman_iface.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Utils" displayName="Utils" projectFiles="true">
+        <itemPath>src/Utils/Makefile</itemPath>
+        <itemPath>src/Utils/fifo_queue.c</itemPath>
+        <itemPath>src/Utils/fifo_queue.h</itemPath>
+        <itemPath>src/Utils/request_handler.c</itemPath>
+        <itemPath>src/Utils/request_handler.h</itemPath>
       </logicalFolder>
       <itemPath>src/config.c</itemPath>
       <itemPath>src/config.h</itemPath>
       <itemPath>src/int_coding.h</itemPath>
-      <itemPath>src/net_helper.c</itemPath>
+      <itemPath>src/net_helper-udp-win32.c</itemPath>
+      <itemPath>src/net_helper-udp.c</itemPath>
+      <itemPath>src/win32-net.h</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -87,65 +139,154 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>src</Elem>
-    <Elem>include</Elem>
+    <Elem>/usr/home/tobias/dev/GRAPES/include</Elem>
+    <Elem>/usr/home/tobias/dev/GRAPES/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="2">
       <toolsSet>
-        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
+        <rebuildPropChanged>true</rebuildPropChanged>
       </toolsSet>
       <compileType>
         <cTool>
           <incDir>
-            <pElem>include</pElem>
-            <pElem>src</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/include</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src</pElem>
+            <pElem>/usr/local/include</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/Cache</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/ChunkIDSet</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/Chunkiser</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/PeerSampler</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/PeerSet</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/TopologyManager</pElem>
+            <pElem>/usr/local/include/opencv</pElem>
+            <pElem>/usr/home/tobias/dev/NAPA-BASELIBS/include</pElem>
+            <pElem>/usr/local/include/gtk-2.0</pElem>
+            <pElem>/usr/local/include/glib-2.0</pElem>
+            <pElem>/usr/local/include/cairo</pElem>
+            <pElem>/usr/local/include/pango-1.0</pElem>
+            <pElem>/usr/local/include/gdk-pixbuf-2.0</pElem>
+            <pElem>/usr/local/include/atk-1.0</pElem>
           </incDir>
-          <warningLevel>2</warningLevel>
         </cTool>
-        <ccTool>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>src</pElem>
-          </incDir>
-          <warningLevel>2</warningLevel>
-        </ccTool>
       </compileType>
-      <item path="include/chunk.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/chunk.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/chunkbuffer.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/chunkbuffer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/chunkidset.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/chunkidset.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/grapes_msg_types.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/grapes_msg_types.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/net_helper.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/net_helper.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/peer.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/peer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/peerset.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/peerset.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/scheduler_common.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/scheduler_common.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/scheduler_ha.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/scheduler_ha.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/scheduler_la.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/scheduler_la.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/tman.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/tman.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/topmanager.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/trade_msg_ha.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/trade_msg_ha.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/trade_msg_la.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/trade_msg_la.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/trade_sig_ha.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/trade_sig_ha.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/trade_sig_la.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/trade_sig_la.h" ex="false" tool="3" flavor2="0">
+      <item path="include/chunkiser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/cloud_helper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/cloud_helper_utils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/peersampler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/blist_cache.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/blist_cache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/blist_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/blist_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/cloudcast_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/cloudcast_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/cyclon_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/cyclon_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/ncast_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/ncast_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/topo_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/topo_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/topocache.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/topocache.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/ChunkBuffer/buffer-ha.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -153,9 +294,25 @@
       </item>
       <item path="src/ChunkIDSet/chunkids_encoding.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/ChunkIDSet/chunkids_encoding_list.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_encoding_set.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
       <item path="src/ChunkIDSet/chunkids_ha.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/ChunkIDSet/chunkids_iface.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/ChunkIDSet/chunkids_ops.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_ops_list.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_ops_set.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/ChunkIDSet/chunkids_private.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -165,52 +322,83 @@
       </item>
       <item path="src/ChunkTrading/chunk_signaling.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/Chunkiser/Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/chunkiser_iface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/dechunkiser_iface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/ffmpeg_compat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream-avf.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream-dumb.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream-dummy.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream-udp.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/libav-compat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-avf.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-dummy.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-play.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-raw.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-udp.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/payload.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/cloudcast.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/cyclon.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/dummy.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/ncast.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/peersampler.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/peersampler_iface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="src/PeerSet/peerset_ops.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/PeerSet/peerset_private.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/Scheduler/sched.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="src/TopologyManager/blist_cache.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/blist_cache.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/blist_proto.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/blist_proto.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/cyclon.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/cyclon_proto.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/cyclon_proto.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/dummy.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/ncast.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/ncast_proto.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/ncast_proto.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/peersampler.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/peersampler_iface.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="src/TopologyManager/proto.h" ex="false" tool="3" flavor2="0">
+      <item path="src/TopologyManager/dumbTopman.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/TopologyManager/tman.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="src/TopologyManager/topo_proto.c" ex="false" tool="0" flavor2="0">
+      <item path="src/TopologyManager/topman.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="src/TopologyManager/topo_proto.h" ex="false" tool="3" flavor2="0">
+      <item path="src/TopologyManager/topman_iface.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/TopologyManager/topocache.c" ex="false" tool="0" flavor2="0">
+      <item path="src/Utils/Makefile" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/TopologyManager/topocache.h" ex="false" tool="3" flavor2="0">
+      <item path="src/Utils/fifo_queue.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Utils/fifo_queue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Utils/request_handler.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Utils/request_handler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/config.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -218,30 +406,44 @@
       </item>
       <item path="src/int_coding.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/net_helper.c" ex="false" tool="0" flavor2="0">
+      <item path="src/net_helper-udp-win32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/net_helper-udp.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/win32-net.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="2">
       <toolsSet>
-        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
+        <rebuildPropChanged>true</rebuildPropChanged>
       </toolsSet>
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
           <incDir>
-            <pElem>include</pElem>
-            <pElem>src</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/include</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src</pElem>
+            <pElem>/usr/local/include</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/Cache</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/ChunkIDSet</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/Chunkiser</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/PeerSampler</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/PeerSet</pElem>
+            <pElem>/usr/home/tobias/dev/GRAPES/src/TopologyManager</pElem>
+            <pElem>/usr/local/include/opencv</pElem>
+            <pElem>/usr/home/tobias/dev/NAPA-BASELIBS/include</pElem>
+            <pElem>/usr/local/include/gtk-2.0</pElem>
+            <pElem>/usr/local/include/glib-2.0</pElem>
+            <pElem>/usr/local/include/cairo</pElem>
+            <pElem>/usr/local/include/pango-1.0</pElem>
+            <pElem>/usr/local/include/gdk-pixbuf-2.0</pElem>
+            <pElem>/usr/local/include/atk-1.0</pElem>
           </incDir>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
-          <incDir>
-            <pElem>include</pElem>
-            <pElem>src</pElem>
-          </incDir>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -250,37 +452,120 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="include/chunk.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/chunk.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/chunkbuffer.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/chunkbuffer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/chunkidset.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/chunkidset.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/grapes_msg_types.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/grapes_msg_types.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/net_helper.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/net_helper.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/peer.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/peer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/peerset.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/peerset.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/scheduler_common.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/scheduler_common.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/scheduler_ha.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/scheduler_ha.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/scheduler_la.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/scheduler_la.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/tman.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/tman.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/topmanager.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/trade_msg_ha.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/trade_msg_ha.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/trade_msg_la.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/trade_msg_la.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/trade_sig_ha.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/trade_sig_ha.h" ex="false" tool="3" flavor2="0">
+      <item path="/usr/home/tobias/dev/GRAPES/include/trade_sig_la.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="include/trade_sig_la.h" ex="false" tool="3" flavor2="0">
+      <item path="include/chunkiser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/cloud_helper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/cloud_helper_utils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/peersampler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/blist_cache.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/blist_cache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/blist_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/blist_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/cloudcast_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/cloudcast_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/cyclon_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/cyclon_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/ncast_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/ncast_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/topo_proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/topo_proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Cache/topocache.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Cache/topocache.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/ChunkBuffer/buffer-ha.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -288,9 +573,25 @@
       </item>
       <item path="src/ChunkIDSet/chunkids_encoding.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/ChunkIDSet/chunkids_encoding_list.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_encoding_set.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
       <item path="src/ChunkIDSet/chunkids_ha.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/ChunkIDSet/chunkids_iface.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/ChunkIDSet/chunkids_ops.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_ops_list.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/ChunkIDSet/chunkids_ops_set.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/ChunkIDSet/chunkids_private.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -300,52 +601,83 @@
       </item>
       <item path="src/ChunkTrading/chunk_signaling.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/Chunkiser/Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/chunkiser_iface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/dechunkiser_iface.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/ffmpeg_compat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream-avf.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream-dumb.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream-dummy.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream-udp.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/input-stream.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/libav-compat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-avf.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-dummy.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-play.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-raw.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream-udp.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/output-stream.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Chunkiser/payload.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/cloudcast.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/cyclon.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/dummy.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/ncast.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/peersampler.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/PeerSampler/peersampler_iface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="src/PeerSet/peerset_ops.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/PeerSet/peerset_private.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/Scheduler/sched.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="src/TopologyManager/blist_cache.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/blist_cache.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/blist_proto.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/blist_proto.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/cyclon.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/cyclon_proto.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/cyclon_proto.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/dummy.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/ncast.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/ncast_proto.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/ncast_proto.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/peersampler.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/TopologyManager/peersampler_iface.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="src/TopologyManager/proto.h" ex="false" tool="3" flavor2="0">
+      <item path="src/TopologyManager/dumbTopman.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/TopologyManager/tman.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="src/TopologyManager/topo_proto.c" ex="false" tool="0" flavor2="0">
+      <item path="src/TopologyManager/topman.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="src/TopologyManager/topo_proto.h" ex="false" tool="3" flavor2="0">
+      <item path="src/TopologyManager/topman_iface.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/TopologyManager/topocache.c" ex="false" tool="0" flavor2="0">
+      <item path="src/Utils/Makefile" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/TopologyManager/topocache.h" ex="false" tool="3" flavor2="0">
+      <item path="src/Utils/fifo_queue.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Utils/fifo_queue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Utils/request_handler.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/Utils/request_handler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/config.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -353,7 +685,11 @@
       </item>
       <item path="src/int_coding.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/net_helper.c" ex="false" tool="0" flavor2="0">
+      <item path="src/net_helper-udp-win32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/net_helper-udp.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/win32-net.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

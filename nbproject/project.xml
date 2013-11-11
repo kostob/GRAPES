@@ -10,8 +10,8 @@
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>src</sourceRootElem>
-                <sourceRootElem>include</sourceRootElem>
+                <sourceRootElem>/usr/home/tobias/dev/GRAPES/include</sourceRootElem>
+                <sourceRootElem>/usr/home/tobias/dev/GRAPES/src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
@@ -23,6 +23,9 @@
                     <type>2</type>
                 </confElem>
             </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
         </data>
     </configuration>
 </project>

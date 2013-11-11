@@ -16,7 +16,6 @@
  *  (in general, to be part of the overlay a peer must either use
  *  "-i<known peer IP> -p<known peer port>" or be referenced by another peer).
  */
-#include <sys/select.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -24,16 +23,17 @@
 #include <getopt.h>
 
 #include "net_helper.h"
-#include "topmanager.h"
+#include "peersampler.h"
 #include "net_helpers.h"
 
+static struct psample_context *context;
 static const char *my_addr = "127.0.0.1";
 static int port = 6666;
 static int srv_port;
 static const char *srv_ip;
 
 static struct peer_attributes {
-  enum peer_state {sleep, awake, tired} state;
+  enum peer_state {psleep, awake, tired} state;
   char colour[20];
   char name[40];
 } my_attr;
@@ -62,7 +62,7 @@ static void cmdline_parse(int argc, char *argv[])
         strcpy(my_attr.colour, optarg);
         break;
       case 'S':
-        my_attr.state = sleep;
+        my_attr.state = psleep;
         break;
       case 'T':
         my_attr.state = tired;
@@ -78,6 +78,7 @@ static void cmdline_parse(int argc, char *argv[])
 static struct nodeID *init(void)
 {
   struct nodeID *myID;
+  char addr[256];
 
   myID = net_helper_init(my_addr, port, "");
   if (myID == NULL) {
@@ -86,8 +87,9 @@ static struct nodeID *init(void)
     return NULL;
   }
 
-  strcpy(my_attr.name, node_addr(myID));
-  topInit(myID, &my_attr, sizeof(struct peer_attributes), "");
+  node_addr(myID, addr, 256);
+  strcpy(my_attr.name, addr);
+  context = psample_init(myID, &my_attr, sizeof(struct peer_attributes), "");
 
   return myID;
 }
@@ -95,7 +97,7 @@ static struct nodeID *init(void)
 static const char *status_print(enum peer_state s)
 {
   switch (s) {
-    case sleep:
+    case psleep:
       return "sleeping";
     case awake:
       return "awake";
@@ -111,19 +113,19 @@ static void status_update(void)
   struct nodeID *myself;
 
   switch (my_attr.state) {
-    case sleep:
+    case psleep:
       my_attr.state = awake;
       break;
     case awake:
       my_attr.state = tired;
       break;
     case tired:
-      my_attr.state = sleep;
+      my_attr.state = psleep;
       break;
   }
   printf("goin' %s\n", status_print(my_attr.state));
   myself = create_node(my_addr, port);
-  topChangeMetadata(&my_attr, sizeof(struct peer_attributes));
+  psample_change_metadata(context, &my_attr, sizeof(struct peer_attributes));
   nodeid_free(myself);
 }
 
@@ -132,9 +134,10 @@ static void loop(struct nodeID *s)
   int done = 0;
 #define BUFFSIZE 1024
   static uint8_t buff[BUFFSIZE];
+  char addr[256];
   int cnt = 0;
-  
-  topParseData(NULL, 0);
+
+  psample_parse_data(context, NULL, 0);
   while (!done) {
     int len;
     int news;
@@ -145,20 +148,20 @@ static void loop(struct nodeID *s)
       struct nodeID *remote;
 
       len = recv_from_peer(s, &remote, buff, BUFFSIZE);
-      topParseData(buff, len);
+      psample_parse_data(context, buff, len);
       nodeid_free(remote);
     } else {
       if (cnt % 30 == 0) {
         status_update();
       }
-      topParseData(NULL, 0);
+      psample_parse_data(context, NULL, 0);
       if (cnt++ % 10 == 0) {
-        const struct nodeID **neighbourhoods;
+        const struct nodeID *const *neighbourhoods;
         int n, i, size;
         const struct peer_attributes *meta;
 
-        neighbourhoods = topGetNeighbourhood(&n);
-        meta = topGetMetadata(&size);
+        neighbourhoods = psample_get_cache(context, &n);
+        meta = psample_get_metadata(context, &size);
         if (meta == NULL) {
           printf("No MetaData!\n");
         } else {
@@ -169,7 +172,8 @@ static void loop(struct nodeID *s)
         }
         printf("I have %d neighbourhoods:\n", n);
         for (i = 0; i < n; i++) {
-          printf("\t%d: %s", i, node_addr(neighbourhoods[i]));
+          node_addr(neighbourhoods[i], addr, 256);
+          printf("\t%d: %s", i, addr);
           if (meta) {
             printf("\tPeer %s is a %s peer and is %s", meta[i].name, meta[i].colour, status_print(meta[i].state));
           }
@@ -200,7 +204,7 @@ int main(int argc, char *argv[])
 
       return -1;
     }
-    topAddNeighbour(knownHost, NULL, 0);
+    psample_add_peer(context, knownHost, NULL, 0);
   }
 
   loop(my_sock);

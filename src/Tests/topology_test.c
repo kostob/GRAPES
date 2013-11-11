@@ -16,7 +16,6 @@
  *  (in general, to be part of the overlay a peer must either use
  *  "-i<known peer IP> -p<known peer port>" or be referenced by another peer).
  */
-#include <sys/select.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -24,9 +23,11 @@
 #include <getopt.h>
 
 #include "net_helper.h"
-#include "topmanager.h"
+#include "peersampler.h"
 #include "net_helpers.h"
 
+static const char *psample_config;
+static struct psample_context *context;
 static const char *my_addr = "127.0.0.1";
 static int port = 6666;
 static int srv_port;
@@ -37,7 +38,7 @@ static void cmdline_parse(int argc, char *argv[])
 {
   int o;
 
-  while ((o = getopt(argc, argv, "s:p:i:P:I:")) != -1) {
+  while ((o = getopt(argc, argv, "s:p:i:P:I:cno")) != -1) {
     switch(o) {
       case 'p':
         srv_port = atoi(optarg);
@@ -53,6 +54,15 @@ static void cmdline_parse(int argc, char *argv[])
         break;
       case 's':
         fprefix = strdup(optarg);
+        break;
+      case 'c':
+        psample_config = "protocol=cyclon";
+        break;
+      case 'n':
+        psample_config = "protocol=newscast";
+        break;
+      case 'o':
+        psample_config = "protocol=newscastplus";
         break;
       default:
         fprintf(stderr, "Error: unknown option %c\n", o);
@@ -72,8 +82,7 @@ static struct nodeID *init(void)
 
     return NULL;
   }
-//  topInit(myID, NULL, 0, "protocol=cyclon");
-  topInit(myID, NULL, 0, "");
+  context = psample_init(myID, NULL, 0, psample_config);
 
   return myID;
 }
@@ -84,13 +93,14 @@ static void loop(struct nodeID *s)
 #define BUFFSIZE 1024
   static uint8_t buff[BUFFSIZE];
   int cnt = 0;
-  
-  topParseData(NULL, 0);
+
+  psample_parse_data(context, NULL, 0);
   while (!done) {
     int len;
     int news;
     const struct timeval tout = {1, 0};
     struct timeval t1;
+    char addr[256];
 
     t1 = tout;
     news = wait4data(s, &t1, NULL);
@@ -98,18 +108,19 @@ static void loop(struct nodeID *s)
       struct nodeID *remote;
 
       len = recv_from_peer(s, &remote, buff, BUFFSIZE);
-      topParseData(buff, len);
+      psample_parse_data(context, buff, len);
       nodeid_free(remote);
     } else {
-      topParseData(NULL, 0);
+      psample_parse_data(context, NULL, 0);
       if (cnt % 10 == 0) {
-        const struct nodeID **neighbourhoods;
+        const struct nodeID *const *neighbourhoods;
         int n, i;
 
-        neighbourhoods = topGetNeighbourhood(&n);
+        neighbourhoods = psample_get_cache(context, &n);
         printf("I have %d neighbours:\n", n);
         for (i = 0; i < n; i++) {
-          printf("\t%d: %s\n", i, node_addr(neighbourhoods[i]));
+          node_addr(neighbourhoods[i], addr, 256);
+          printf("\t%d: %s\n", i, addr);
         }
         fflush(stdout);
         if (fprefix) {
@@ -120,7 +131,8 @@ static void loop(struct nodeID *s)
           f = fopen(fname, "w");
           if (f) fprintf(f, "#Cache size: %d\n", n);
           for (i = 0; i < n; i++) {
-            if (f) fprintf(f, "%d\t\t%d\t%s\n", port, i, node_addr(neighbourhoods[i]));
+            node_addr(neighbourhoods[i], addr, 256);
+            if (f) fprintf(f, "%d\t\t%d\t%s\n", port, i, addr);
           }
           fclose(f);
         }
@@ -150,7 +162,7 @@ int main(int argc, char *argv[])
 
       return -1;
     }
-    topAddNeighbour(knownHost, NULL, 0);
+    psample_add_peer(context, knownHost, NULL, 0);
   }
 
   loop(my_sock);

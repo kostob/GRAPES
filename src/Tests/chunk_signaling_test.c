@@ -3,7 +3,6 @@
  *
  *  This is free software; see gpl-3.0.txt
  */
-#include <sys/select.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -91,7 +90,8 @@ static enum signaling_type sig_receive(struct nodeID *my_sock, struct nodeID **r
     struct nodeID *owner;
     struct nodeID *remote;
     enum signaling_type sig_type;
-    int max_deliver = 0, trans_id = 0;
+    int max_deliver = 0;
+    uint16_t trans_id = 0;
 
     ret = recv_from_peer(my_sock, &remote, buff, BUFFSIZE);
 
