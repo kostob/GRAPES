@@ -6,24 +6,15 @@
  */
 
 #include <sys/types.h>
-#include <unistd.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
-
-#ifndef _WIN32
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#else
-#include "win32-net.h"
-#endif
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 #include "net_helper.h"
-
-#define MAX_MSG_SIZE 1024 * 60
 
 struct nodeID {
   struct sockaddr_in addr;
@@ -98,8 +89,6 @@ struct nodeID *net_helper_init(const char *my_addr, int port, const char *config
   myself = create_node(my_addr, port);
   if (myself == NULL) {
     fprintf(stderr, "Error creating my socket (%s:%d)!\n", my_addr, port);
-
-    return NULL;
   }
   myself->fd =  socket(AF_INET, SOCK_DGRAM, 0);
   if (myself->fd < 0) {
@@ -125,47 +114,32 @@ void bind_msg_type (uint8_t msgtype)
 {
 }
 
-struct my_hdr_t {
-  uint8_t m_seq;
-  uint8_t frag_seq;
-  uint8_t frags;
-} __attribute__((packed));
-
 int send_to_peer(const struct nodeID *from, struct nodeID *to, const uint8_t *buffer_ptr, int buffer_size)
 {
   struct msghdr msg = {0};
-  static struct my_hdr_t my_hdr;
+  uint8_t my_hdr;
   struct iovec iov[2];
   int res;
 
   iov[0].iov_base = &my_hdr;
-  iov[0].iov_len = sizeof(struct my_hdr_t);
+  iov[0].iov_len = 1;
   msg.msg_name = &to->addr;
   msg.msg_namelen = sizeof(struct sockaddr_in);
   msg.msg_iovlen = 2;
   msg.msg_iov = iov;
 
-  my_hdr.m_seq++;
-  my_hdr.frags = (buffer_size / (MAX_MSG_SIZE)) + 1;
-  my_hdr.frag_seq = 0;
-
   do {
     iov[1].iov_base = buffer_ptr;
-    if (buffer_size > MAX_MSG_SIZE) {
-      iov[1].iov_len = MAX_MSG_SIZE;
+    if (buffer_size > 1024 * 60) {
+      iov[1].iov_len = 1024 * 60;
+      my_hdr = 0;
     } else {
       iov[1].iov_len = buffer_size;
+      my_hdr = 1;
     }
-    my_hdr.frag_seq++;
-
     buffer_size -= iov[1].iov_len;
     buffer_ptr += iov[1].iov_len;
     res = sendmsg(from->fd, &msg, 0);
-
-    if (res  < 0){
-      int error = errno;
-      fprintf(stderr,"net-helper: sendmsg failed errno %d: %s\n", error, strerror(error));
-    }
   } while (buffer_size > 0);
 
   return res;
@@ -173,14 +147,14 @@ int send_to_peer(const struct nodeID *from, struct nodeID *to, const uint8_t *bu
 
 int recv_from_peer(const struct nodeID *local, struct nodeID **remote, uint8_t *buffer_ptr, int buffer_size)
 {
-  int res, recv, m_seq, frag_seq;
+  int res, recv;
   struct sockaddr_in raddr;
   struct msghdr msg = {0};
-  static struct my_hdr_t my_hdr;
+  uint8_t my_hdr;
   struct iovec iov[2];
 
   iov[0].iov_base = &my_hdr;
-  iov[0].iov_len = sizeof(struct my_hdr_t);
+  iov[0].iov_len = 1;
   msg.msg_name = &raddr;
   msg.msg_namelen = sizeof(struct sockaddr_in);
   msg.msg_iovlen = 2;
@@ -192,30 +166,18 @@ int recv_from_peer(const struct nodeID *local, struct nodeID **remote, uint8_t *
   }
 
   recv = 0;
-  m_seq = -1;
-  frag_seq = 0;
   do {
     iov[1].iov_base = buffer_ptr;
-    if (buffer_size > MAX_MSG_SIZE) {
-      iov[1].iov_len = MAX_MSG_SIZE;
+    if (buffer_size > 1024 * 60) {
+      iov[1].iov_len = 1024 * 60;
     } else {
       iov[1].iov_len = buffer_size;
     }
     buffer_size -= iov[1].iov_len;
     buffer_ptr += iov[1].iov_len;
     res = recvmsg(local->fd, &msg, 0);
-    recv += (res - sizeof(struct my_hdr_t));
-    if (m_seq != -1 && my_hdr.m_seq != m_seq) {
-      return -1;
-    } else {
-      m_seq = my_hdr.m_seq;
-    }
-    if (my_hdr.frag_seq != frag_seq + 1) {
-      return -1;
-    } else {
-     frag_seq++;
-    }
-  } while ((my_hdr.frag_seq < my_hdr.frags) && (buffer_size > 0));
+    recv += (res - 1);
+  } while ((my_hdr == 0) && (buffer_size > 0));
   memcpy(&(*remote)->addr, &raddr, msg.msg_namelen);
   (*remote)->fd = -1;
 
@@ -226,10 +188,10 @@ int node_addr(const struct nodeID *s, char *addr, int len)
 {
   int n;
 
-  if (node_ip(s, addr, len) < 0) {
+  if (!inet_ntop(AF_INET, &(s->addr.sin_addr), addr, len)) {
     return -1;
   }
-  n = snprintf(addr + strlen(addr), len - strlen(addr) - 1, ":%d", node_port(s));
+  n = snprintf(addr + strlen(addr), len - strlen(addr) - 1, ":%d", ntohs(s->addr.sin_port));
 
   return n;
 }
@@ -285,7 +247,7 @@ void nodeid_free(struct nodeID *s)
 
 int node_ip(const struct nodeID *s, char *ip, int len)
 {
-  if (inet_ntop(AF_INET, &(s->addr.sin_addr), ip, len) == NULL) {
+  if (inet_ntop(AF_INET, &(s->addr.sin_addr), ip, len) == 0) {
     return -1;
   }
 

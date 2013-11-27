@@ -11,7 +11,6 @@
 #include <errno.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 
 #include "chunkiser_iface.h"
@@ -53,11 +52,7 @@ static struct chunkiser_ctx *dumb_open(const char *fname, int *period, const cha
     config_value_int(cfg_tags, "chunk_size", &res->chunk_size);
     access_mode = config_value_str(cfg_tags, "mode");
     if (access_mode && !strcmp(access_mode, "nonblock")) {
-#ifndef _WIN32
       fcntl(res->fds[0], F_SETFL, O_NONBLOCK);
-#else
-      fprintf(stderr, "nonblock is not implemented yet\n");
-#endif
     }
   }
   free(cfg_tags);

@@ -4,13 +4,8 @@
  *  This is free software; see gpl-3.0.txt
  */
 #include <sys/time.h>
-#ifndef _WIN32
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <fcntl.h>
-#else
-#include <winsock2.h>
-#endif
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -41,7 +36,7 @@ static int input_get_udp(uint8_t *data, int fd)
 {
   ssize_t msglen;
 
-  msglen = recv(fd, data, UDP_BUF_SIZE, 0);
+  msglen = recv(fd, data, UDP_BUF_SIZE, MSG_DONTWAIT);
   if (msglen <= 0) {
     return 0;
   }
@@ -60,16 +55,7 @@ static int listen_udp(int port)
     return -1;
   }
 
-#ifndef _WIN32
-  fcntl(fd, F_SETFL, O_NONBLOCK);
-#else
-  {
-    unsigned long nonblocking = 1;
-    ioctlsocket(fd, FIONBIO, (unsigned long*) &nonblocking);
-  }
-#endif
-
-  memset(&servaddr, 0, sizeof(servaddr));
+  bzero(&servaddr, sizeof(servaddr));
   servaddr.sin_family = AF_INET;
   servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
   servaddr.sin_port = htons(port);

@@ -13,7 +13,6 @@
 #include "int_coding.h"
 #include "payload.h"
 #include "config.h"
-#include "ffmpeg_compat.h"
 #include "dechunkiser_iface.h"
 
 struct dechunkiser_ctx {
@@ -127,7 +126,7 @@ static AVFormatContext *format_gen(struct dechunkiser_ctx *o, const uint8_t *dat
 
     o->outctx = format_init(o);
     if (o->streams & 0x01) {
-      avformat_new_stream(o->outctx, 0);
+      av_new_stream(o->outctx, 0);
       c = o->outctx->streams[o->outctx->nb_streams - 1]->codec;
       c->codec_id = o->video_codec_id;
       c->codec_type = CODEC_TYPE_VIDEO;
@@ -140,7 +139,7 @@ static AVFormatContext *format_gen(struct dechunkiser_ctx *o, const uint8_t *dat
       c->pix_fmt = PIX_FMT_YUV420P;
     }
     if (o->streams & 0x02) {
-      avformat_new_stream(o->outctx, 1);
+      av_new_stream(o->outctx, 1);
       c = o->outctx->streams[o->outctx->nb_streams - 1]->codec;
       c->codec_id = o->audio_codec_id;
       c->codec_type = CODEC_TYPE_AUDIO;
@@ -171,7 +170,7 @@ static struct dechunkiser_ctx *avf_init(const char *fname, const char *config)
 
   memset(out, 0, sizeof(struct dechunkiser_ctx));
   out->output_format = strdup("nut");
-  out->selected_streams = 0x03;
+  out->selected_streams = 0x01;
   if (fname && fname[0]) {
     out->output_file = strdup(fname);
   } else {
@@ -234,14 +233,14 @@ static void avf_write(struct dechunkiser_ctx *o, int id, uint8_t *data, int size
     return;		/* Received a chunk for a non-selected stream */
   }
   frames = data[header_size - 1];
-  p = data + header_size;
+  p = data + header_size + FRAME_HEADER_SIZE * frames;
   for (i = 0; i < frames; i++) {
     AVPacket pkt;
     int64_t pts, dts;
     int frame_size;
 
-    frame_header_parse(p, &frame_size, &pts, &dts);
-    p += FRAME_HEADER_SIZE;
+    frame_header_parse(data + header_size + FRAME_HEADER_SIZE * i,
+                       &frame_size, &pts, &dts);
     //dprintf("Frame %d PTS1: %d\n", i, pts);
     av_init_packet(&pkt);
     pkt.stream_index = (media_type == 2) && (((o->streams & 0x01) == 0x01));

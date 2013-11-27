@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
     nodeid_free(knownHost);
   }
   printf("Waiting 5s...\n");
-  usleep(5000);
+  sleep(5);
   printf("Trying to send a gossiping message...\n");
   res = psample_parse_data(context, NULL, 0);
   if (res < 0) {

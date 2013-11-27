@@ -143,15 +143,14 @@ void schedSelectHybrid(SchedOrdering ordering, schedPeerID  *peers, size_t peers
                      pairEvaluateFunction pairevaluate);
 
 
-/*---selector function----------------*/
-/**
-  * casted evaluator for generic use in generic selector functions
-  */
-typedef double (*evaluateFunction)(void*);
-
-/**
-  * Select best N of K with the given ordering method
-  */
-void selectWithOrdering(SchedOrdering ordering, size_t size, unsigned char *base, size_t nmemb, double(*evaluate)(void *), unsigned char *selected,size_t *selected_len);
+/* BIG FAT WARNING: This is here only because it's needed by the streamer;
+ * will be changed in the future!
+ * (this is why the function is not doxygenized)
+ * Use it at your own risk... ;-)
+ */
+void selectPeersForChunks(SchedOrdering ordering, schedPeerID *peers, size_t peers_len, schedChunkID *chunks, size_t chunks_len, 	//in
+                     schedPeerID *selected, size_t *selected_len,	//out, inout
+                     filterFunction filter,
+                     peerEvaluateFunction evaluate);
 
 #endif /* SCHEDULER_LA_H */

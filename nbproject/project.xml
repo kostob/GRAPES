@@ -10,17 +10,12 @@
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>/usr/home/tobias/dev/GRAPES/include</sourceRootElem>
-                <sourceRootElem>/usr/home/tobias/dev/GRAPES/src</sourceRootElem>
+                <sourceRootElem>.</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
-                    <name>Debug</name>
-                    <type>2</type>
-                </confElem>
-                <confElem>
-                    <name>Release</name>
-                    <type>2</type>
+                    <name>Default</name>
+                    <type>0</type>
                 </confElem>
             </confList>
             <formatting>

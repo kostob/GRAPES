@@ -18,15 +18,15 @@ TESTS = topology_test \
         cb_test \
         config_test \
         tman_test \
-        topo_msg_size_test
+        topo_msg_size_test \
+	cloud_test \
+	cloudcast_topology_test \
+	cloud_topology_monitor \
+	test_queue
 
 ifneq ($(ARCH),win32)
   TESTS += topology_test_th \
-           chunkiser_test   \
-	   cloud_test \
-           cloudcast_topology_test \
-           cloud_topology_monitor \
-           test_queue
+           chunkiser_test
 endif
 
 CPPFLAGS = -I$(BASE)/include
@@ -81,27 +81,25 @@ chunkiser_test: chunkiser_test.o
 chunkiser_test: $(NET_HELPER).o
 ifdef FFDIR
 chunkiser_test: CFLAGS += -pthread
-chunkiser_test: LDFLAGS += -pthread -L$(FFDIR)/libavutil -L$(FFDIR)/libavcore -L$(FFDIR)/libavcodec -L$(FFDIR)/libavformat -L$(FFDIR)/libswscale
-chunkiser_test: LDLIBS += -lavformat -lavcodec -lswscale -lavutil -lm
+chunkiser_test: LDFLAGS += -pthread -L$(FFDIR)/libavutil -L$(FFDIR)/libavcore -L$(FFDIR)/libavcodec -L$(FFDIR)/libavformat
+chunkiser_test: LDLIBS += -lm -lavformat -lavcodec -lavutil
 chunkiser_test: LDLIBS += $(call ld-option, -lavcore)
 chunkiser_test: LDLIBS += $(call ld-option, -lz)
 chunkiser_test: LDLIBS += $(call ld-option, -lbz2)
-ifdef GTK
-chunkiser_test: LDLIBS += `pkg-config --libs gtk+-2.0`
-chunkiser_test: LDLIBS += `pkg-config --libs alsa`
-endif
 endif
 
 cloud_test: cloud_test.o net_helpers.o
 cloud_test: $(NET_HELPER).o
+cloud_test: LDFLAGS += -ldl
 
 cloudcast_topology_test: cloudcast_topology_test.o net_helpers.o
 cloudcast_topology_test: $(NET_HELPER).o
 cloudcast_topology_test: CFLAGS += -pthread
-cloudcast_topology_test: LDFLAGS += -pthread
+cloudcast_topology_test: LDFLAGS += -ldl -pthread
 
 cloud_topology_monitor: cloud_topology_monitor.o net_helpers.o
 cloud_topology_monitor: $(NET_HELPER).o
+cloud_topology_monitor: LDFLAGS += -ldl
 
 test_queue: test_queue.o
 test_queue: CFLAGS += -I$(BASE)/src/Utils

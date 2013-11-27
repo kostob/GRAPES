@@ -118,7 +118,6 @@ int peerset_add_peer(struct peerset *h, struct nodeID *id)
   e->bmap = chunkID_set_init("type=bitmap");
   timerclear(&e->bmap_timestamp);
   e->cb_size = 0;
-  e->capacity = 0;
 
   return h->n_elements;
 }
@@ -154,7 +153,7 @@ int peerset_remove_peer(struct peerset *h, const struct nodeID *id){
     struct peer *e = h->elements[i];
     nodeid_free(e->id);
     chunkID_set_free(e->bmap);
-    memmove(&h->elements[i], &h->elements[i+1], ((h->n_elements--) - (i+1)) * sizeof(struct peer *));
+    memmove(e, e + 1, ((h->n_elements--) - (i+1)) * sizeof(struct peer *));
     free(e);
 
     return i;

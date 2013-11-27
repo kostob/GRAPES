@@ -5,7 +5,6 @@
  *  This is free software; see lgpl-2.1.txt
  */
 
-#ifdef _WIN32
 #include <winsock2.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -14,7 +13,6 @@
 #include <string.h>
 
 #include "net_helper.h"
-
 
 struct nodeID {
   struct sockaddr_in addr;
@@ -176,9 +174,13 @@ int recv_from_peer(const struct nodeID *local, struct nodeID **remote, uint8_t *
 
 int node_addr(const struct nodeID *s, char *addr, int len)
 {
+  char buff[96];
   int n;
 
-  n = snprintf(addr, len, "%s:%d", !inet_ntoa(s->addr.sin_addr), ntohs(s->addr.sin_port));
+  if (!inet_ntop(AF_INET, &(s->addr.sin_addr), addr, len)) {
+    return -1;
+  }
+  n = snprintf(addr + strlen(addr), len - strlen(addr) - 1, ":%d", ntohs(s->addr.sin_port));
 
   return n;
 }
@@ -234,8 +236,10 @@ void nodeid_free(struct nodeID *s)
 
 int node_ip(const struct nodeID *s, char *ip, int len)
 {
-  sprintf(ip, "%s", inet_ntoa(s->addr.sin_addr));
+  if (inet_ntop(AF_INET, &(s->addr.sin_addr), ip, len) == 0) {
+    return -1;
+  }
 
   return 1;
 }
-#endif
+
