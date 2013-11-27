@@ -223,11 +223,11 @@ static void avf_write(struct dechunkiser_ctx *o, int id, uint8_t *data, int size
 
       return;
     }
-    av_set_parameters(o->outctx, NULL);
+    //av_set_parameters(o->outctx, NULL);
     snprintf(o->outctx->filename, sizeof(o->outctx->filename), "%s", o->output_file);
-    dump_format(o->outctx, 0, o->output_file, 1);
-    url_fopen(&o->outctx->pb, o->output_file, URL_WRONLY);
-    av_write_header(o->outctx);
+    av_dump_format(o->outctx, 0, o->output_file, 1);
+    avio_open(&o->outctx->pb, o->output_file, URL_WRONLY);
+    avformat_write_header(o->outctx, NULL);
   }
   if ((o->streams & media_type) == 0) {
     return;		/* Received a chunk for a non-selected stream */
@@ -270,15 +270,17 @@ static void avf_close(struct dechunkiser_ctx *s)
   int i;
 
   av_write_trailer(s->outctx);
-  url_fclose(s->outctx->pb);
+  avio_close(s->outctx->pb);
 
   for (i = 0; i < s->outctx->nb_streams; i++) {
-    av_metadata_free(&s->outctx->streams[i]->metadata);
-    av_free(s->outctx->streams[i]->codec);
-    av_free(s->outctx->streams[i]->info);
-    av_free(s->outctx->streams[i]);
+    //av_metadata_free(&s->outctx->streams[i]->metadata);
+    //av_free(s->outctx->streams[i]->codec);
+    //av_free(s->outctx->streams[i]->info);
+    //av_free(s->outctx->streams[i]);
+    avformat_free_context(s->outctx->streams[i]);
   }
-  av_metadata_free(&s->outctx->metadata);
+  //av_metadata_free(&s->outctx->metadata);
+  avformat_free_context(s->outctx->metadata);
   free(s->outctx);
   free(s->output_format);
   free(s->output_file);

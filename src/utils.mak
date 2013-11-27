@@ -11,7 +11,7 @@ CC = $(CROSS_COMPILE)cc
 AR = $(CROSS_COMPILE)ar
 LD = $(CROSS_COMPILE)ld
 endif
-
+CFLAGS += -fPIC
 ifndef STATIC_CFLAGS
 CFLAGS += -g -Wall
 CFLAGS += $(call cc-option, -Wdeclaration-after-statement)

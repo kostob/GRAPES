@@ -4,6 +4,7 @@ else
 vpath %.c $(BASE)/src/$(notdir $(CURDIR))
 endif
 CFGDIR ?= ..
+UNAME := $(shell uname)
 
 NH_INCARNATION ?= udp
 NET_HELPER = ../net_helper-$(NH_INCARNATION)
@@ -35,8 +36,15 @@ LDFLAGS += -L..
 LDLIBS += -lgrapes
 #LDFLAGS += -static
 
+ifeq ($(UNAME), FreeBSD)
+LDFLAGS += -L/usr/local/lib
+CPPFLAGS += -I/usr/local/include
+endif
+
 ifdef DELEGATE
+ifneq ($(UNAME), FreeBSD)
 LDLIBS += -ldl
+endif
 endif
 
 all: $(TESTS)
@@ -81,7 +89,11 @@ chunkiser_test: chunkiser_test.o
 chunkiser_test: $(NET_HELPER).o
 ifdef FFDIR
 chunkiser_test: CFLAGS += -pthread
+ifeq ($(UNAME), FreeBSD)
+chunkiser_test: LDFLAGS += -pthread
+else
 chunkiser_test: LDFLAGS += -pthread -L$(FFDIR)/libavutil -L$(FFDIR)/libavcore -L$(FFDIR)/libavcodec -L$(FFDIR)/libavformat
+endif
 chunkiser_test: LDLIBS += -lm -lavformat -lavcodec -lavutil
 chunkiser_test: LDLIBS += $(call ld-option, -lavcore)
 chunkiser_test: LDLIBS += $(call ld-option, -lz)
@@ -90,16 +102,24 @@ endif
 
 cloud_test: cloud_test.o net_helpers.o
 cloud_test: $(NET_HELPER).o
+ifneq ($(UNAME), FreeBSD)
 cloud_test: LDFLAGS += -ldl
+endif
 
 cloudcast_topology_test: cloudcast_topology_test.o net_helpers.o
 cloudcast_topology_test: $(NET_HELPER).o
 cloudcast_topology_test: CFLAGS += -pthread
+ifeq ($(UNAME), FreeBSD)
+cloudcast_topology_test: LDFLAGS += -pthread
+else
 cloudcast_topology_test: LDFLAGS += -ldl -pthread
+endif
 
 cloud_topology_monitor: cloud_topology_monitor.o net_helpers.o
 cloud_topology_monitor: $(NET_HELPER).o
+ifneq ($(UNAME), FreeBSD)
 cloud_topology_monitor: LDFLAGS += -ldl
+endif
 
 test_queue: test_queue.o
 test_queue: CFLAGS += -I$(BASE)/src/Utils

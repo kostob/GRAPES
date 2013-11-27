@@ -9,3 +9,6 @@
 #undef URL_WRONLY
 #define URL_WRONLY AVIO_FLAG_WRITE
 #endif
+#ifndef CodecID
+#define CodecID AVCodecID
+#endif

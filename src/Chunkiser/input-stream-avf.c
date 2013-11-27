@@ -5,6 +5,7 @@
  */
 
 #include <libavformat/avformat.h>
+#include <libavcodec/avcodec.h>
 #include <stdbool.h>
 #include <string.h>
 
@@ -144,7 +145,8 @@ static struct chunkiser_ctx *avf_open(const char *fname, int *period, const char
   if (desc == NULL) {
     return NULL;
   }
-  res = av_open_input_file(&desc->s, fname, NULL, 0, NULL);
+  desc->s = NULL;
+  res = avformat_open_input(&desc->s, fname, NULL, NULL);
   if (res < 0) {
     fprintf(stderr, "Error opening %s: %d\n", fname, res);
 
@@ -207,7 +209,7 @@ static struct chunkiser_ctx *avf_open(const char *fname, int *period, const char
     }
   }
 
-  dump_format(desc->s, 0, fname, 0);
+  av_dump_format(desc->s, 0, fname, 0);
 
   return desc;
 }
@@ -311,7 +313,12 @@ static uint8_t *avf_chunkise(struct chunkiser_ctx *s, int id, int *size, uint64_
       break;
     case CODEC_TYPE_AUDIO:
       audio_header_fill(data, s->s->streams[pkt.stream_index]);
-      new_tb = (AVRational){s->s->streams[pkt.stream_index]->codec->frame_size, s->s->streams[pkt.stream_index]->codec->sample_rate};
+      if (s->s->streams[pkt.stream_index]->codec->codec->capabilities & CODEC_CAP_VARIABLE_FRAME_SIZE) {
+        new_tb.num = 10000;
+        new_tb.den = s->s->streams[pkt.stream_index]->codec->sample_rate;
+      } else {
+         new_tb = (AVRational){s->s->streams[pkt.stream_index]->codec->frame_size, s->s->streams[pkt.stream_index]->codec->sample_rate};
+      }
       break;
     default:
       /* Cannot arrive here... */
