@@ -32,8 +32,8 @@ endif
 
 CPPFLAGS = -I$(BASE)/include
 
-LDFLAGS += -L..
-LDLIBS += -lgrapes
+LDFLAGS += -L.. -Wl,-rpath,.
+LDLIBS += -lgrapes -lavformat -lavcodec -lavutil -lavfilter -lavdevice -lavresample
 #LDFLAGS += -static
 
 ifeq ($(UNAME), FreeBSD)

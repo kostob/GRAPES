@@ -14,3 +14,21 @@
 ^doc/doxy$
 \.d$
 \.lst$
+syntax: glob
+src/Tests/cb_test
+src/Tests/chunk_encoding_test
+src/Tests/chunk_sending_test
+src/Tests/chunk_signaling_test
+src/Tests/chunkidset_test
+src/Tests/chunkidset_test_bug
+src/Tests/cloud_test
+src/Tests/chunkiser_test
+src/Tests/cloud_topology_monitor
+src/Tests/cloudcast_topology_test
+src/Tests/config_test
+src/Tests/test_queue
+src/Tests/tman_test
+src/Tests/topo_msg_size_test
+src/Tests/topology_test
+src/Tests/topology_test_attr
+src/Tests/topology_test_th
