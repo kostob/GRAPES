@@ -38,6 +38,10 @@
 #define MSG_SIG_ACK 11
 //Request the BufferMap
 #define MSG_SIG_BMREQ 12
+//Request secure data for chunk
+#define MSG_SIG_SCREQ 13
+//Request secure data for login
+#define MSG_SIG_SLREQ 14
 
 #define SIG_META_LEN 1024
 #define SIG_BUF_LEN 2048
@@ -96,6 +100,12 @@ int parseSignaling(uint8_t *buff, int buff_len, struct nodeID **owner_id,
       case MSG_SIG_BMREQ:
         *sig_type = sig_request_buffermap;
         break;
+      case MSG_SIG_SCREQ:
+        *sig_type = sig_request_secured_data_chunk;
+        break;
+      case MSG_SIG_SLREQ:
+        *sig_type = sig_request_secured_data_login;
+        break;  
       default:
         fprintf(stderr, "Error invalid signaling message: type %d\n", signal->type);
         return -1;
@@ -197,4 +207,14 @@ int requestBufferMap(struct nodeID *to, const struct nodeID *owner,
 {
   return sendSignaling(MSG_SIG_BMREQ, to, (!owner?localID:owner), NULL,
                        0, trans_id);
+}
+
+int requestSecuredDataChunk(struct nodeID *to, struct chunkID_set *cset, uint16_t trans_id)
+{
+    return sendSignaling(MSG_SIG_SCREQ, to, NULL, cset, 1, trans_id);
+}
+
+int requestSecuredDataLogin(struct nodeID *to, uint16_t trans_id)
+{
+    return sendSignaling(MSG_SIG_SLREQ, to, NULL, NULL, 0, trans_id);
 }

@@ -11,9 +11,11 @@
  * of the ML. Make sure there are no overlaps!
  *
  */
-#define MSG_TYPE_TOPOLOGY   0x10
-#define MSG_TYPE_CHUNK      0x11
-#define MSG_TYPE_SIGNALLING 0x12
-#define MSG_TYPE_TMAN       0x13
+#define MSG_TYPE_TOPOLOGY           0x10
+#define MSG_TYPE_CHUNK              0x11
+#define MSG_TYPE_SIGNALLING         0x12
+#define MSG_TYPE_TMAN               0x13
+#define MSG_TYPE_SECURED_DATA_CHUNK 0x14
+#define MSG_TYPE_SECURED_DATA_LOGIN 0x15
 
 #endif	/* GRAPES_MSG_TYPES_H */

@@ -65,6 +65,64 @@ int sendChunk(struct nodeID *to, const struct chunk *c, uint16_t transid)
   return EXIT_SUCCESS;
 }
 
+/**
+ * Send a secured Chunk to a target Peer
+ *
+ * Send a single secured Chunk to a given Peer
+ *
+ * @param[in] to destination peer
+ * @param[in] c Chunk to send
+ * @return 0 on success, <0 on error
+ */
+int sendSecuredChunk(struct nodeID *to, const struct chunk *c, uint16_t transid)
+{
+  int buff_len;
+  uint8_t *buff;
+  int res;
+
+  buff_len  = 20 + sizeof(transid) + c->size + c->attributes_size;
+  buff = malloc(buff_len + 1);
+  if (buff == NULL) {
+      return -1;
+  }
+  buff[0] = MSG_TYPE_SECURED_DATA_CHUNK;
+  int16_cpy(buff + 1, transid);
+  res = encodeChunk(c, buff + 1 + sizeof(transid), buff_len);
+  send_to_peer(localID, to, buff, buff_len + 1);
+  free(buff);
+
+  return EXIT_SUCCESS;
+}
+
+/**
+ * Send a secured Chunk to a target Peer
+ *
+ * Send a single secured Chunk to a given Peer
+ *
+ * @param[in] to destination peer
+ * @param[in] c Chunk to send
+ * @return 0 on success, <0 on error
+ */
+int sendSecuredChunkLogin(struct nodeID *to, const struct chunk *c, uint16_t transid)
+{
+  int buff_len;
+  uint8_t *buff;
+  int res;
+
+  buff_len  = 20 + sizeof(transid) + c->size + c->attributes_size;
+  buff = malloc(buff_len + 1);
+  if (buff == NULL) {
+      return -1;
+  }
+  buff[0] = MSG_TYPE_SECURED_DATA_LOGIN;
+  int16_cpy(buff + 1, transid);
+  res = encodeChunk(c, buff + 1 + sizeof(transid), buff_len);
+  send_to_peer(localID, to, buff, buff_len + 1);
+  free(buff);
+
+  return EXIT_SUCCESS;
+}
+
 int chunkDeliveryInit(struct nodeID *myID)
 {
   localID = myID;

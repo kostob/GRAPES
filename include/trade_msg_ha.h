@@ -41,6 +41,30 @@ int parseChunkMsg(const uint8_t *buff, int buff_len, struct chunk *c, uint16_t *
 int sendChunk(struct nodeID *to, const struct chunk *c, uint16_t transid);
 
 /**
+  * @brief Send a secured Chunk to a target Peer
+  *
+  * Send a single Chunk to a given Peer
+  *
+  * @param[in] to destination peer
+  * @param[in] c Chunk to send
+  * @param[in] transid the ID of transaction this send belongs to (if any)
+  * @return 0 on success, <0 on error
+  */
+int sendSecuredChunk(struct nodeID *to, const struct chunk *c, uint16_t transid);
+
+/**
+  * @brief Send a secured Chunk with data needed for login to a target Peer
+  *
+  * Send a single Chunk with secured data for login to a given Peer
+  *
+  * @param[in] to destination peer
+  * @param[in] c Chunk to send
+  * @param[in] transid the ID of transaction this send belongs to (if any)
+  * @return 0 on success, <0 on error
+  */
+int sendSecuredChunkLogin(struct nodeID *to, const struct chunk *c, uint16_t transid);
+
+/**
   * @brief Init the Chunk trading internals.
   *
   * Initialization facility.
